@@ -1,0 +1,25 @@
+<template>
+  <div class="d-flex justify-content-center">
+    <h1 class="align-self-center">Não tem nada selecionado</h1>
+  </div>
+
+  <Fab @on:click="createNewEntry" />
+</template>
+
+
+<script setup>
+  import { router } from 'vue-router'
+  import { defineAsyncComponent } from 'vue'
+
+  const Fab = defineAsyncComponent(() => import('../components/Fab.vue'))
+
+  const createNewEntry = () => {
+    router.push({ name: 'entry', params: { id: 'new' } })
+  }
+</script>
+
+<style lang="scss" scoped>
+div {
+  height: 100%;
+}
+</style>

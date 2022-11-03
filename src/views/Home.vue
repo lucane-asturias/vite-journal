@@ -16,7 +16,7 @@
   import { router } from 'vue-router'
 
   const goToDaybook = () => {
-    this.$router.push({ name: 'no-entry' })
+    router.push({ name: 'no-entry' })
   }  
 
 </script>

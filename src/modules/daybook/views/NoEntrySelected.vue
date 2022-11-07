@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex justify-content-center">
-    <h1 class="align-self-center">Não tem nada selecionado</h1>
+    <h1 class="align-self-center fs-4">Não tem nada selecionado</h1>
   </div>
 
   <Fab @on:click="createNewEntry" />
@@ -8,8 +8,10 @@
 
 
 <script setup>
-  import { router } from 'vue-router'
+  import { useRouter } from 'vue-router'
   import { defineAsyncComponent } from 'vue'
+
+  const router = useRouter()
 
   const Fab = defineAsyncComponent(() => import('../components/Fab.vue'))
 

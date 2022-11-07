@@ -13,7 +13,9 @@
 
 
 <script setup>
-  import { router } from 'vue-router'
+  import { useRouter } from 'vue-router'
+
+  const router = useRouter()
 
   const goToDaybook = () => {
     router.push({ name: 'no-entry' })

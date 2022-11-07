@@ -6,7 +6,7 @@
 
 <script setup>
 
-  defineProps(() => {
+  defineProps({
     icon: {
       type: String,
       default: 'fa-plus'

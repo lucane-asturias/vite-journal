@@ -10,21 +10,29 @@
     </div>
   </div>
 
-    <div v-else class="d-flex">
-      <div class="col-4">
-        <EntryList />
-      </div>
-      <div class="col">
-        <router-view />
-      </div>
+  <div v-else class="d-flex">
+    <div class="col-4">
+      <EntryList />
     </div>
+    <div class="col">
+      <router-view />
+    </div>
+  </div>
+
 </template>
 
 <script setup>
-  import { defineAsyncComponent } from 'vue'
+  import { defineAsyncComponent, onMounted } from 'vue'
+  import { useJournal } from '../composables/useJournal'
 
   const Navbar = defineAsyncComponent(() => import('../components/Navbar.vue'))
   const EntryList = defineAsyncComponent(() => import('../components/EntryList.vue'))
+
+  const { loadEntries, isLoading } = useJournal()
+
+  onMounted(() => { 
+    loadEntries() 
+  })
 </script>
 
 <style lang="css" scoped>

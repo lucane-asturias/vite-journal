@@ -5,7 +5,7 @@
         type="text"
         class="form-control"
         placeholder="Buscar entrada"
-        v-model="term"
+        v-model="data.term"
       />
     </div>
 
@@ -28,18 +28,20 @@
   </div>
 </template>
 
-<script setup>
-  import { computed, defineAsyncComponent, ref } from 'vue'
-  import { getEntriesByTerm } from '../composables/useJournal'
+<script lang="ts" setup>
+  import { computed, defineAsyncComponent, reactive } from 'vue'
+  import { Entry } from '../store/journalStore'
+  import { useJournal } from '../composables/useJournal'
 
   const Entry = defineAsyncComponent(() => import('../components/Entry.vue'))
 
-  const term = ref()
+  const { getEntriesByTerm } = useJournal() 
 
-  const entriesByTerm = computed(() => getEntriesByTerm(term.value)) 
+  const data = reactive({ term: '' })
+
+  const entriesByTerm = computed<Entry>(() => getEntriesByTerm(data.term)) 
+
 </script>
-
-
 
 <style lang="scss" scoped>
 .entry-list-container{

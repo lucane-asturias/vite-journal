@@ -1,6 +1,6 @@
 <template>
 
-  <template v-if="entryData">
+  <template v-if="entryData.entry">
     <div class="S-title d-flex justify-content-between p-2">
         
       <div>
@@ -10,6 +10,7 @@
       </div>
 
       <div>
+          <!-- Image selection simulator -->
           <input type="file" v-show="false" ref="imageSelector"
             accept="image/png, image/jpeg" @change="onSelectedImage($event)" />
 
@@ -39,7 +40,7 @@
 
     <img
       v-if="entryData.picture && !localImage" 
-      :src="entry.picture" 
+      :src="entryData.entry.picture" 
       alt="entry-picture"
       class="img-thumbnail" />
 
@@ -59,9 +60,9 @@
 </template>
 
 <script lang="ts" setup>
-  import { ref, reactive, defineAsyncComponent, onMounted, watch } from 'vue'
-  import { router } from 'vue-router'
-  import { getEntriesById } from '../composables/useJournal'
+  import { computed, defineAsyncComponent, onMounted, reactive, ref, toRefs, watch } from 'vue'
+  import { useRouter } from 'vue-router'
+  import { useJournal } from '../composables/useJournal'
 
   import Swal from 'sweetalert2'
 
@@ -69,15 +70,21 @@
   import uploadImage from '../helpers/uploadImage'
 
   const Fab = defineAsyncComponent(() => import('../components/Fab.vue'))
+  const router = useRouter()
 
-  const props = defineProps(() => {
+  const { getEntriesById, createEntry, updateEntry, destroyEntry } = useJournal()
+
+  const props = defineProps({
     id: {
       type: String,
       required: true
     }
   })
 
+  const propsIdRef = toRefs(props).id // a reactive reference
+
   const imageSelector = ref<HTMLInputElement>(null)
+  const localImage = ref()
 
   const entryData = reactive({
     entry: null,
@@ -86,14 +93,14 @@
   })
  
   const dayMonthYear = computed(() => {
-    const { day, month, yearDay } = getDayMonthYear(this.entry.date)
+    const { day, month, yearDay } = getDayMonthYear(entryData.entry.date)
     return { day, month, yearDay }
   })
 
   const loadEntry = () => {
-    let entryObj;
+    let entryObj
 
-    if (this.id === 'new') {
+    if (props.id === 'new') {
       entryObj = {
         text: '',
         date: new Date().getTime()
@@ -111,7 +118,7 @@
   }
 
   const onSelectedImage = async ($event: Event<HTMLInputElement>) => {
-    const file = $event.target.files[0]
+    const file: File = $event.target.files[0]
     console.log('file', file)
 
     if (!file) {
@@ -134,20 +141,21 @@
     })
     Swal.showLoading()
 
-    const picture = await uploadImage(this.file)
+    const picture = await uploadImage(entryData.file)
 
-    this.entry.picture = picture
+    entryData.entry.picture = picture
 
-    if (this.entry.id) {
-      await this.updateEntry(this.entry)
+    if (!entryData.entry.id) {
+      // Post de uma nova entrada
+      const id = await createEntry(entryData.entry)
+      router.push({ name: "entry", params: { id } })
+      Swal.fire('Salvo', 'Entrada registrada con éxito', 'success')
     } else {
-      // console.log('Post de uma nueva entrada')
-      const id = await this.createEntry(this.entry)
-      this.$router.push({ name: "entry", params: { id } })
+      await updateEntry(entryData.entry)
+      Swal.fire('Editado', 'Entrada editada con éxito', 'success')
     }
 
-    this.file = null
-    Swal.fire('Salvo', 'Entrada registrada con éxito', 'success')
+    entryData.file = null
   }
   
   const deleteEntry = async () => {
@@ -165,7 +173,7 @@
       })
       Swal.showLoading()
 
-      await this.destroyEntry(this.entry.id)
+      await destroyEntry(entryData.entry.id)
       router.push({ name: "no-entry" })
 
       Swal.fire('Eliminado', '', 'success')
@@ -173,12 +181,14 @@
   }
 
   onMounted(() => {
-    this.loadEntry()
+    loadEntry()
   })
 
-  watch(props.id, () => ) {
-    this.loadEntry()
-  }
+  watch(propsIdRef, () => {
+    loadEntry()
+  })
+
+  // watchEffect(() => props.id, loadEntry())
 
 </script>
 

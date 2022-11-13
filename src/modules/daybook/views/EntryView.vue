@@ -107,7 +107,7 @@
       }
     } else {
       entryObj = getEntriesById( props.id )
-      if ( !entryObj ) return router.push({ name: 'no-entry' })
+      if ( !entryObj && undefined ) return router.push({ name: 'no-entry' })
     }
 
     entryData.entry = entryObj
@@ -135,7 +135,7 @@
   }
 
   const saveEntry = async () => {
-    new Swal({
+    Swal.fire({
       title: 'Espere por favor',
       allowOutsideClick: false
     })
@@ -167,12 +167,11 @@
     })
 
     if (isConfirmed) {
-      new Swal({
+      Swal.fire({
         title: 'Espere por favor',
         allowOutsideClick: false
       })
       Swal.showLoading()
-
       await destroyEntry(entryData.entry.id)
       router.push({ name: "no-entry" })
 

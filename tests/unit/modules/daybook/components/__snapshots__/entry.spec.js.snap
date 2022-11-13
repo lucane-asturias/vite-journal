@@ -1,0 +1,8 @@
+// Vitest Snapshot v1
+
+exports[`Provas no Entry Component > deve fazer match com o snapshot 1`] = `
+"<div class=\\"entry-container mb-3 pointer p-2\\" data-v-4a9e2957=\\"\\">
+  <div class=\\"entry-title d-flex\\" data-v-4a9e2957=\\"\\"><span class=\\"text-success fs-5 fw-bold\\" data-v-4a9e2957=\\"\\">6</span><span class=\\"mx-1 fs-5\\" data-v-4a9e2957=\\"\\">novembro</span><span class=\\"mx-2 text-muted mt-1\\" data-v-4a9e2957=\\"\\">2022, domingo</span></div>
+  <div class=\\"entry-description mt-1\\" data-v-4a9e2957=\\"\\">Hola mundo desde pruebas xD</div>
+</div>"
+`;

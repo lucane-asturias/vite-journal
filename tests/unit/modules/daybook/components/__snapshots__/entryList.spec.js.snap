@@ -1,0 +1,12 @@
+// Vitest Snapshot v1
+
+exports[`Porvas no componente EntryList > deve chamar getEntriesByTerm sem termo e mostrar 2 entradas 1`] = `
+"<div class=\\"entry-list-container\\" data-v-d2f66aca=\\"\\">
+  <div class=\\"p-2\\" data-v-d2f66aca=\\"\\"><input type=\\"text\\" class=\\"form-control\\" placeholder=\\"Buscar entrada\\" data-v-d2f66aca=\\"\\"></div>
+  <div class=\\"mt-2 d-flex flex-column\\" data-v-d2f66aca=\\"\\"><button class=\\"btn btn-primary mx-3\\" data-v-d2f66aca=\\"\\"><i class=\\"fa fa-plus-circle\\" data-v-d2f66aca=\\"\\"> Nova entrada </i></button></div>
+  <div class=\\"entry-scrollarea\\" data-v-d2f66aca=\\"\\">
+    <entry-stub entry=\\"[object Object]\\" data-v-d2f66aca=\\"\\"></entry-stub>
+    <entry-stub entry=\\"[object Object]\\" data-v-d2f66aca=\\"\\"></entry-stub>
+  </div>
+</div>"
+`;

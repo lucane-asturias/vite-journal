@@ -38,7 +38,7 @@ export const useJournalStore = defineStore('journalStore', {
     },
     async createEntry({ text, date, picture }: Entry) {
       const dataToSave = { text, date, picture }
-      const teste = '' // <<
+      // const teste = '' // <<
       const { data } = await journalApi.post(`/entries.json`, dataToSave)
 
       Object.assign(dataToSave, { id: data.name })  // data = { "name": "-MxlYBvjVoYTMaMJG7mt" }
@@ -51,6 +51,7 @@ export const useJournalStore = defineStore('journalStore', {
       const dataToSave = { date, picture, text }
 
       const response = await journalApi.put(`/entries/${ id }.json`, dataToSave)
+      Object.assign(dataToSave, { id }) // sending id for vitest purposes
 
       const idx = this.entries.map(e => e.id).indexOf(id)
       this.entries[idx] = dataToSave

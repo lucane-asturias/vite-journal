@@ -20,6 +20,6 @@
   const goToDaybook = () => {
     router.push({ name: 'no-entry' })
   }  
-
+  
 </script>
 

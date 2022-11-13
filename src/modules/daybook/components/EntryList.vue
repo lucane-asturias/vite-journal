@@ -30,7 +30,7 @@
 
 <script lang="ts" setup>
   import { computed, defineAsyncComponent, reactive } from 'vue'
-  import { Entry } from '../store/journalStore'
+  import { Entry as EntryType } from '../store/journalStore'
   import { useJournal } from '../composables/useJournal'
 
   const Entry = defineAsyncComponent(() => import('../components/Entry.vue'))
@@ -39,7 +39,7 @@
 
   const data = reactive({ term: '' })
 
-  const entriesByTerm = computed<Entry>(() => getEntriesByTerm(data.term)) 
+  const entriesByTerm = computed<EntryType>(() => getEntriesByTerm(data.term)) 
 
 </script>
 

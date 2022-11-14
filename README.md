@@ -2,7 +2,7 @@
 
 ## Vite Journal
 
-This is an application I created with help of the prof Fernando Herrera, from Vue training course. Great and complete course
+This is an application I created with the prof Fernando Herrera, from Vue training course. Great and complete course
 
 Converted to CompositionApi, Script Setup, Typescript, Pinia (for state managament), Vuetify 3.0.1
 And also for the first time doing unit testing for Pinia, I used Vitest

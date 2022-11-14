@@ -1,7 +1,15 @@
 # Vue 3 + Vite
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## Vite Journal
 
-## Recommended IDE Setup
+This is an application I created with help of the prof Fernando Herrera, from Vue training course. Great and complete course
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+Converted to CompositionApi, Script Setup, Typescript, Pinia (for state managament), Vuetify 3.0.1
+And also for the first time doing unit testing for Pinia, I used Vitest
+
+In this project I developped an app that manages daily diaries using this utilities:
+
+- firebase (backend)
+- cloudinary (api to upload images)
+- vitest 0.25.0
+- sweet-alert2

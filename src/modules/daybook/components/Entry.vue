@@ -3,12 +3,12 @@
     @click="$router.push({ name: 'entry', params: { id: entry.id }})"
   >
     <div class="entry-title d-flex">
-      <span class="text-success fs-5 fw-bold">{{ entryDay }}</span>
-      <span class="mx-1 fs-5">{{ entryMonth }}</span>
-      <span class="mx-2 text-muted mt-1">{{ entryYear }}</span>
+      <span class="text-h6 font-weight-bold">{{ entryDay }}</span>
+      <span class="mx-1 text-h6">{{ entryMonth }}</span>
+      <span class="mx-2 text-font-weight-thin">{{ entryYear }}</span>
     </div>
 
-    <div class="entry-description mt-1">
+    <div class="entry-description my-2">
       {{ shortText }}
     </div>
   </div>
@@ -52,16 +52,27 @@
   transition: 0.2s all ease-in;
 
   &:hover {
-    background-color: lighten($color: grey, $amount: 42);
+    background-color: lighten($color: grey, $amount: 42) !important;
     transition: 0.2s all ease-in;
   }
 
+  span:nth-of-type(1) {
+    color: #198754 !important;
+  }
+
   span:nth-of-type(2) {
-    text-transform: capitalize;
+    text-transform: capitalize !important;
+  }
+
+  span:nth-of-type(3) {
+    margin-top: 6.4px;
+    font-size: 15px;
+    color: #757575 !important;
+    margin-left: 6px !important;
   }
   
   .entry-description {
-    font-size: 13.3px;
+    font-size: 13.3px !important;
   }
 }
 

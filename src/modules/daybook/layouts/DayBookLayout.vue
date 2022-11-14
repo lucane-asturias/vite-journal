@@ -1,22 +1,27 @@
 <template>
   <Navbar />
 
-  <div v-if="isLoading" class="row justify-content-md-center">
-    <div class="col-3 alert-info text-center mt-5">
+  <div v-if="isLoading" class="loading">
+    <v-alert class="col-3 text-center text-subtitle-1 mt-5"
+      type="error" 
+      width="700" 
+      color="#f8d7da" 
+      outlined
+    >
       Espere por favor..
       <h3 class="mt-2">
-        <i class="fa fa-spin fa-sync"></i>
+        <v-icon icon="fa fa-spin fa-sync"></v-icon>
       </h3>
-    </div>
+    </v-alert>
   </div>
 
   <div v-else class="d-flex">
-    <div class="col-4">
+    <v-col cols="4">
       <EntryList />
-    </div>
-    <div class="col">
+    </v-col>
+    <v-col>
       <router-view />
-    </div>
+    </v-col>
   </div>
 
 </template>
@@ -35,5 +40,15 @@
   })
 </script>
 
-<style lang="css" scoped>
+<style scoped>
+.loading {
+  display: grid;
+  justify-content: center;
+}
+
+:deep() .v-alert {
+  border: .1px solid transparent;
+  border-color: #f5c6cb !important;
+  color: #721c24;
+}
 </style>

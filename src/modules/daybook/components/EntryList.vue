@@ -1,21 +1,24 @@
 <template>
   <div class="entry-list-container">
     <div class="p-2">
-      <input 
+      <v-text-field
         type="text"
-        class="form-control"
+        density="compact"
+        variant="outlined"
+        class="pt-2 mx-2"
+        append-inner-icon="fa fa-search"
         placeholder="Buscar entrada"
         v-model="data.term"
       />
     </div>
 
-    <div class="mt-2 d-flex flex-column">
-      <button class="btn btn-primary mx-3"
+    <div class="d-flex flex-column">
+      <v-btn color="primary" class="mx-2 mb-5"
         @click="$router.push({ name: 'entry', params: { id: 'new' } })">
         <i class="fa fa-plus-circle">
           Nova entrada
         </i>
-      </button>
+      </v-btn>
     </div>
 
     <div class="entry-scrollarea">
@@ -43,7 +46,7 @@
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="css" scoped>
 .entry-list-container{
   border-right: 1px solid #2c3e50;
   height: calc( 100vh - 56px );

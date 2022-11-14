@@ -1,6 +1,6 @@
 <template>
-  <div class="d-flex justify-content-center">
-    <h1 class="align-self-center fs-4">Não tem nada selecionado</h1>
+  <div class="d-flex justify-center">
+    <h1 class="align-self-center text-h4">Não tem nada selecionado</h1>
   </div>
 
   <Fab @on:click="createNewEntry" />

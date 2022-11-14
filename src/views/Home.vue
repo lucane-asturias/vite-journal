@@ -4,10 +4,11 @@
 
     <h1>Hello World</h1>
 
-    <button @click="goToDaybook" class="btn btn-primary">Primary</button>
-    <button @click="goToDaybook" class="btn btn-secondary">Secondary</button>
-    <button @click="goToDaybook" class="btn btn-success">Success</button>
+    <v-btn color="primary" @click="goToDaybook">Primary</v-btn>
+    <v-btn color="secondary" @click="goToDaybook">Secondary</v-btn>
+    <v-btn color="success" @click="goToDaybook">Success</v-btn>
 
+    <div class="text-h5">Vuetify Working</div>
   </div>
 </template>
 

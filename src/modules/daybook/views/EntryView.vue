@@ -1,12 +1,12 @@
 <template>
 
   <template v-if="entryData.entry">
-    <div class="S-title d-flex justify-content-between p-2">
+    <div class="entry-title d-flex justify-space-between my-1">
         
       <div>
-          <span class="text-success fs-3 fw-bold">{{ dayMonthYear.day }}</span>
-          <span class="mx-1 fs-3">{{ dayMonthYear.month }}</span>
-          <span class="mx-2 fs-4 fw-light">{{ dayMonthYear.yearDay }}</span>
+          <span class="text-h4 font-weight-bold">{{ dayMonthYear.day }}</span>
+          <span class="mx-2 text-h4">{{ dayMonthYear.month }}</span>
+          <span class="mx-2 text-h5 fw-light">{{ dayMonthYear.yearDay }}</span>
       </div>
 
       <div>
@@ -14,28 +14,32 @@
           <input type="file" v-show="false" ref="imageSelector"
             accept="image/png, image/jpeg" @change="onSelectedImage($event)" />
 
-          <button class="btn btn-danger mx-2"
+          <v-btn color="danger" class="mx-2 my-1"
               v-if="entryData.entry.id"
               @click="deleteEntry">
               Borrar
               <i class="fa fa-trash-alt"></i>
-          </button>
+          </v-btn>
 
-          <button class="btn btn-primary" @click="onSelectImage">
+          <v-btn color="primary" @click="onSelectImage">
               Subir foto
               <i class="fa fa-upload"></i>
-          </button>
+          </v-btn>
       </div>
 
     </div>
 
-    <hr>
+    <v-divider color="primary" class="my-4"></v-divider>
 
     <div class="d-flex flex-column px-3 h-75">
-      <textarea
+      <v-textarea
+        clearable
+        clear-icon="fas fa-times-circle"
+        variant="filled"
+        auto-grow
         v-model="entryData.entry.text"
         placeholder="O que aconteceu hoje?"
-      ></textarea>
+      ></v-textarea>
     </div>
 
     <img
@@ -193,18 +197,19 @@
 
 <style lang="scss" scoped>
 
-textarea {
-  font-size: 20px;
-  border: none;
-  height: 100%;
-
-  &:focus {
-    outline: none;
+span:nth-of-type(1) {
+    color: #198754 !important;
   }
-}
 
 span:nth-of-type(2) {
-  text-transform: capitalize;
+  text-transform: capitalize !important;
+}
+
+span:nth-of-type(3) {
+  margin-top: 6.4px;
+  font-size: 15px;
+  color: #757575 !important;
+  margin-left: 6px !important;
 }
 
 img {
